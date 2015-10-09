@@ -19,13 +19,13 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
 
         <!-- ../pivottable.js libs from ../dist -->
-        <link rel="stylesheet" type="text/css" href="../pivottable/dist/pivot.css">
-        <script type="text/javascript" src="../pivottable/dist/pivot.js"></script>
-        <script type="text/javascript" src="../pivottable/dist/d3_renderers.js"></script>
-        <script type="text/javascript" src="../pivottable/dist/c3_renderers.js"></script>
-        <script type="text/javascript" src="../pivottable/dist/export_renderers.js"></script>
-        <script type="text/javascript" src="../pivottable/dist/gchart_renderers.js"></script>
-        <script type="text/javascript" src="../pivottable/dist/export_renderers.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../pivottable/dist/pivot.css">
+        <script type="text/javascript" src="../../pivottable/dist/pivot.js"></script>
+        <script type="text/javascript" src="../../pivottable/dist/d3_renderers.js"></script>
+        <script type="text/javascript" src="../../pivottable/dist/c3_renderers.js"></script>
+        <script type="text/javascript" src="../../pivottable/dist/export_renderers.js"></script>
+        <script type="text/javascript" src="../../pivottable/dist/gchart_renderers.js"></script>
+        <script type="text/javascript" src="../../pivottable/dist/export_renderers.js"></script>
 
 
         <style>
@@ -58,14 +58,18 @@
 
                 var renderers = $.extend($.pivotUtilities.renderers,$.pivotUtilities.gchart_renderers,$.pivotUtilities.export_renderers);
 
-                $.get("db.csv", function(mps) {
+                var loc_arr = window.location.pathname.split('/');
+                var name = loc_arr[loc_arr.length - 2];
+
+                $.get("../all/db.csv", function(mps) {
                     $("#output").pivotUI($.csv.toArrays(mps), 
                         {
                             renderers: renderers,
                             cols: ["Action type"], 
                             rows: ["District"],
                             vals: ["Total Number Households"],
-                            aggregatorName : "Sum"
+                            aggregatorName : "Sum",
+                            filter: function(record){ return record["District"].toUpperCase() == name.toUpperCase(); }
                         });
 
              });
