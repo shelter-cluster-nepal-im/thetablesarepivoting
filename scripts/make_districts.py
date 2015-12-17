@@ -23,8 +23,8 @@ DISTRICTS = [
 "sindhupalchok"
 ]
 
-#AWS: BASE_DIR = "/home/ec2-user/thetablesarepivoting/"
-BASE_DIR = '/Users/ewanog/code/git_repos/thetablesarepivoting/districts/'
+BASE_DIR = "/home/ec2-user/thetablesarepivoting/districts/"
+#BASE_DIR = '/Users/ewanog/code/git_repos/thetablesarepivoting/districts/'
 MP = 'dist_pivot.html'
 
 #pull from SQL to create db file
@@ -51,3 +51,5 @@ for v in DISTRICTS:
 #copy master pivot to folders
 for v in DISTRICTS:
     shutil.copyfile(BASE_DIR + 'all/' + MP, BASE_DIR + v + '/' + MP)
+
+print 'it ran ok'

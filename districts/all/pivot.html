@@ -62,9 +62,9 @@
                     $("#output").pivotUI($.csv.toArrays(mps), 
                         {
                             renderers: renderers,
-                            cols: ["Action type"], 
-                            rows: ["District"],
-                            vals: ["Total Number Households"],
+                            cols: ["act_type"], 
+                            rows: ["district"],
+                            vals: ["total_hh"],
                             aggregatorName : "Sum"
                         });
 
